@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電腦 手機 平板小幫手</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter & Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700&family=Noto+Sans+TC:wght=300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: #0b0f19;
+            color: #f3f4f6;
+        }
+        .tech-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.25s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="tech-gradient min-h-screen flex flex-col justify-between">
+
+    <!-- NAVIGATION BAR -->
+    <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur-md sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-indigo-600 text-white p-2.5 rounded-xl shadow-lg shadow-indigo-500/30">
+                    <i class="fa-solid fa-laptop-medical text-lg"></i>
+                </div>
+                <div>
+                    <span class="font-extrabold text-lg tracking-wider bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">電腦 手機 平板小幫手</span>
+                    <p class="text-[10px] text-slate-400 tracking-widest uppercase">100% 免費線上諮詢平台</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2">
+                <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center space-x-1">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                    <span>線上服務中</span>
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ALERT TOAST -->
+    <div id="toast" class="fixed top-20 right-4 z-50 transform translate-x-80 opacity-0 transition-all duration-300 bg-slate-900 border-l-4 border-emerald-500 text-slate-100 p-4 rounded-r-xl shadow-2xl flex items-center space-x-3 max-w-sm">
+        <div class="bg-emerald-500/20 text-emerald-400 p-2 rounded-lg">
+            <i class="fa-solid fa-circle-check text-lg"></i>
+        </div>
+        <div>
+            <p id="toast-title" class="font-bold text-sm">系統通知</p>
+            <p id="toast-msg" class="text-xs text-slate-400">已成功複製規格！</p>
+        </div>
+    </div>
+
+    <!-- MAIN WORKSPACE -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-8">
+        <!-- HERO PRESENTATION -->
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase mb-4 inline-block">
+                <i class="fa-solid fa-headset mr-1.5"></i> 專為您的 3C 難題提供診斷
+            </span>
+            <h1 class="text-3xl md:text-5xl font-black mb-4 tracking-tight leading-tight">
+                遇到 3C 難題？<br class="md:hidden"> 
+                <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">我們免費為您把脈！</span>
+            </h1>
+            <p class="text-slate-400 text-sm md:text-base mb-6 leading-relaxed">
+                專治手機異常、電腦慢卡、平板故障、家用網路不通問題。在向我們提問前，您可以先使用下方的「智慧自我診斷」或直接填寫「諮詢表單」發送給我們！
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-3">
+                <a href="https://www.facebook.com/2204979913062286" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm flex items-center justify-center space-x-2 shadow-lg hover:shadow-blue-500/30 transition-all">
+                    <i class="fa-brands fa-facebook text-lg"></i>
+                    <span>前往 FB 粉絲專頁</span>
+                </a>
+                <a href="https://m.me/2204979913062286" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-sm flex items-center justify-center space-x-2 shadow-lg hover:shadow-purple-500/30 transition-all">
+                    <i class="fa-brands fa-facebook-messenger text-lg"></i>
+                    <span>FB 私訊免費諮詢</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- STATS & BENEFITS -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            <div class="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-4 text-center">
+                <div class="text-indigo-400 text-2xl mb-1"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                <h4 class="text-sm font-semibold text-slate-300">手機與平板</h4>
+                <p class="text-xs text-slate-500 mt-1">iOS / Android 系統</p>
+            </div>
+            <div class="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-4 text-center">
+                <div class="text-cyan-400 text-2xl mb-1"><i class="fa-solid fa-desktop"></i></div>
+                <h4 class="text-sm font-semibold text-slate-300">桌機與筆電</h4>
+                <p class="text-xs text-slate-500 mt-1">軟硬體檢修/重灌</p>
+            </div>
+            <div class="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-4 text-center">
+                <div class="text-emerald-400 text-2xl mb-1"><i class="fa-solid fa-wifi"></i></div>
+                <h4 class="text-sm font-semibold text-slate-300">網路與寬頻</h4>
+                <p class="text-xs text-slate-500 mt-1">路由器/WiFi/斷線</p>
+            </div>
+            <div class="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-4 text-center">
+                <div class="text-purple-400 text-2xl mb-1"><i class="fa-solid fa-heart-pulse"></i></div>
+                <h4 class="text-sm font-semibold text-slate-300">免費純諮詢</h4>
+                <p class="text-xs text-slate-500 mt-1">不收費、不強迫推銷</p>
+            </div>
+        </div>
+
+        <!-- TWO COLUMN INTERACTIVE WORKSPACE -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+            
+            <!-- Left Column: Interactive Diagnosis Assistant (7 Cols) -->
+            <div class="lg:col-span-7 bg-slate-950/80 border border-slate-800 rounded-3xl p-6 md:p-8 shadow-xl relative overflow-hidden">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="bg-indigo-500/10 text-indigo-400 p-2 rounded-xl">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold">1. 智慧故障自我診斷</h2>
+                        <p class="text-xs text-slate-400">先檢測看看，也許 10 秒就能自己修好！</p>
+                    </div>
+                </div>
+
+                <!-- Wizard Progress Bar -->
+                <div class="flex items-center space-x-2 mb-8">
+                    <div id="prog-step-1" class="h-1.5 flex-grow rounded-full bg-indigo-600 transition-all duration-300"></div>
+                    <div id="prog-step-2" class="h-1.5 flex-grow rounded-full bg-slate-800 transition-all duration-300"></div>
+                    <div id="prog-step-3" class="h-1.5 flex-grow rounded-full bg-slate-800 transition-all duration-300"></div>
+                </div>
+
+                <!-- Step 1: Select Category -->
+                <div id="wizard-step-1" class="space-y-4">
+                    <h3 class="text-base font-semibold text-slate-200 mb-2">請選擇遭遇問題的設備類型：</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <button onclick="selectCategory('phone')" class="flex items-center p-4 bg-slate-900 hover:bg-slate-850 border border-slate-800 hover:border-indigo-500/50 rounded-2xl text-left transition-all group">
+                            <span class="bg-slate-950 text-indigo-400 p-3 rounded-xl group-hover:scale-110 transition"><i class="fa-solid fa-mobile-screen text-xl"></i></span>
+                            <div class="ml-4">
+                                <span class="block font-bold text-slate-200">手機諮詢</span>
+                                <span class="text-xs text-slate-500">iPhone / Android 異常</span>
+                            </div>
+                        </button>
+                        <button onclick="selectCategory('computer')" class="flex items-center p-4 bg-slate-900 hover:bg-slate-850 border border-slate-800 hover:border-indigo-500/50 rounded-2xl text-left transition-all group">
+                            <span class="bg-slate-950 text-cyan-400 p-3 rounded-xl group-hover:scale-110 transition"><i class="fa-solid fa-laptop text-xl"></i></span>
+                            <div class="ml-4">
+                                <span class="block font-bold text-slate-200">電腦諮詢</span>
+                                <span class="text-xs text-slate-500">Windows / macOS 卡頓</span>
+                            </div>
+                        </button>
+                        <button onclick="selectCategory('tablet')" class="flex items-center p-4 bg-slate-900 hover:bg-slate-850 border border-slate-800 hover:border-indigo-500/50 rounded-2xl text-left transition-all group">
+                            <span class="bg-slate-950 text-purple-400 p-3 rounded-xl group-hover:scale-110 transition"><i class="fa-solid fa-tablet-screen-button text-xl"></i></span>
+                            <div class="ml-4">
+                                <span class="block font-bold text-slate-200">平板諮詢</span>
+                                <span class="text-xs text-slate-500">iPad / 安卓平板異常</span>
+                            </div>
+                        </button>
+                        <button onclick="selectCategory('network')" class="flex items-center p-4 bg-slate-900 hover:bg-slate-850 border border-slate-800 hover:border-indigo-500/50 rounded-2xl text-left transition-all group">
+                            <span class="bg-slate-950 text-emerald-400 p-3 rounded-xl group-hover:scale-110 transition"><i class="fa-solid fa-wifi text-xl"></i></span>
+                            <div class="ml-4">
+                                <span class="block font-bold text-slate-200">網路通訊</span>
+                                <span class="text-xs text-slate-500">WiFi 訊號 / 斷線 / 測速</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Select Symptom -->
+                <div id="wizard-step-2" class="hidden space-y-4">
+                    <button onclick="wizardBackToStep1()" class="text-xs text-slate-400 hover:text-white flex items-center space-x-1 mb-2">
+                        <i class="fa-solid fa-chevron-left"></i>
+                        <span>重新選擇設備</span>
+                    </button>
+                    <h3 class="text-base font-semibold text-slate-200 mb-2">您的設備出現了什麼主要問題？</h3>
+                    <div id="symptoms-container" class="grid grid-cols-1 gap-2.5"></div>
+                </div>
+
+                <!-- Step 3: Resolution -->
+                <div id="wizard-step-3" class="hidden space-y-4">
+                    <button onclick="wizardBackToStep2()" class="text-xs text-slate-400 hover:text-white flex items-center space-x-1 mb-2">
+                        <i class="fa-solid fa-chevron-left"></i>
+                        <span>返回上一步</span>
+                    </button>
+                    
+                    <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-2xl">
+                        <div class="flex items-center space-x-2 text-indigo-400 mb-3">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <h4 class="font-bold text-sm">初步診療診斷：</h4>
+                        </div>
+                        <p id="diag-resolution" class="text-sm text-slate-300 leading-relaxed mb-4"></p>
+                        
+                        <div class="border-t border-slate-800 pt-4">
+                            <div class="flex items-center space-x-2 text-emerald-400 mb-2">
+                                <i class="fa-solid fa-lightbulb"></i>
+                                <h4 class="font-bold text-sm">您可以先嘗試以下基本排除步驟：</h4>
+                            </div>
+                            <ul id="diy-steps-list" class="space-y-2 text-xs text-slate-400 list-disc list-inside"></ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-indigo-950/40 border border-indigo-900/40 p-5 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div class="text-center md:text-left">
+                            <h4 class="font-bold text-sm text-indigo-300">還是無法解決嗎？</h4>
+                            <p class="text-xs text-slate-400 mt-1">別擔心！填寫右側表單，可以直接用信箱或粉專私訊我。</p>
+                        </div>
+                        <button onclick="transferToForm()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-lg shadow-indigo-600/20 flex items-center space-x-1.5 transition">
+                            <span>填寫右側諮詢單</span>
+                            <i class="fa-solid fa-arrow-right hidden lg:inline"></i>
+                            <i class="fa-solid fa-arrow-down lg:hidden"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Consultation Form (5 Cols) -->
+            <div id="consultation-section" class="lg:col-span-5 bg-slate-950/80 border border-slate-800 rounded-3xl p-6 md:p-8 shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="bg-purple-500/10 text-purple-400 p-2 rounded-xl">
+                            <i class="fa-solid fa-file-invoice"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold">2. 諮詢問題表單</h2>
+                            <p class="text-xs text-slate-400">幫您自動排版格式，送出超方便！</p>
+                        </div>
+                    </div>
+
+                    <!-- Form Inputs -->
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1">您的姓名 / 稱呼 <span class="text-red-400">*</span></label>
+                            <input type="text" id="form-user-name" placeholder="例如：張先生 / 陳阿姨" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-indigo-500 transition-all">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1">聯絡方式 / 方便聯絡時間 (選填)</label>
+                            <input type="text" id="form-user-contact" placeholder="例如：0912-345678 (下午2點後)" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-indigo-500 transition-all">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1">您的設備類別與作業系統 <span class="text-red-400">*</span></label>
+                            <input type="text" id="form-device-os" placeholder="例如：iPhone 14 (iOS 17) / 華碩筆電 (Win11)" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-indigo-500 transition-all">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1">發生什麼具體狀況？ <span class="text-red-400">*</span></label>
+                            <textarea id="form-issue-desc" rows="3" placeholder="請詳細描述異常現象（例如：LINE 點開突然閃退、手機看照片字太小、WiFi連得上但打不開網頁...）" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-indigo-500 transition-all"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1">有出現特定錯誤代碼嗎？ (選填)</label>
+                            <input type="text" id="form-error-code" placeholder="如：藍屏代碼 0x000...、跳出錯誤提示訊息" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-indigo-500 transition-all">
+                        </div>
+
+                        <!-- NEW: FILE UPLOAD ZONE (選填) -->
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1">上傳故障畫面截圖或照片 (選填)</label>
+                            <div id="file-upload-zone" class="border-2 border-dashed border-slate-800 hover:border-indigo-500/50 rounded-xl p-4 text-center cursor-pointer transition-all bg-slate-900/50 hover:bg-slate-900/80 relative">
+                                <input type="file" id="form-file-input" accept="image/*" class="hidden">
+                                
+                                <!-- Prompt state -->
+                                <div id="upload-prompt" class="space-y-1.5 pointer-events-none">
+                                    <i class="fa-solid fa-cloud-arrow-up text-xl text-indigo-400"></i>
+                                    <p class="text-xs text-slate-300">點擊此處或拖曳圖片到這裡</p>
+                                    <p class="text-[10px] text-slate-500">支援手機截圖、拍照上傳 (僅限圖片檔案)</p>
+                                </div>
+                                
+                                <!-- Preview state -->
+                                <div id="upload-preview" class="hidden flex flex-col items-center space-y-2">
+                                    <div class="relative group">
+                                        <img id="preview-img" src="#" alt="預覽圖" class="max-h-24 rounded border border-slate-700 shadow-lg object-contain">
+                                        <button type="button" onclick="clearUploadedFile(event)" class="absolute -top-2 -right-2 bg-rose-600 hover:bg-rose-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs shadow-md transition-colors" title="刪除檔案">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </div>
+                                    <span id="preview-filename" class="text-xs text-slate-400 font-mono truncate max-w-[200px]">filename.png</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-slate-800/80 space-y-3">
+                    <button onclick="sendToMessenger()" class="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-sm flex items-center justify-center space-x-2 shadow-lg hover:shadow-purple-500/20 transition-all">
+                        <i class="fa-solid fa-copy"></i>
+                        <span>複製規格並開啟 FB 私訊</span>
+                    </button>
+                    
+                    <button onclick="sendToGmail()" class="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm flex items-center justify-center space-x-2 shadow-lg hover:shadow-emerald-500/20 transition-all">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>我是長輩/無臉書：點此直接發送 Gmail</span>
+                    </button>
+                    
+                    <p class="text-[10px] text-center text-slate-500">
+                        * 有臉書可點選紫色按鈕前往私訊；無臉書點選綠色按鈕會自動填好主旨與信件內容，點擊「送出」即可，完全免用臉書！
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- PROCESS FLOW CHART -->
+        <div class="bg-slate-900/20 border border-slate-800 rounded-3xl p-6 md:p-8 mb-12">
+            <h3 class="text-center font-bold text-lg text-slate-200 mb-8">🛠️ 諮詢三大簡單步驟</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                <div class="text-center flex flex-col items-center">
+                    <div class="w-12 h-12 bg-indigo-500/10 text-indigo-400 rounded-full flex items-center justify-center font-black text-lg border border-indigo-500/20 mb-3 shadow-lg">1</div>
+                    <h4 class="font-bold text-sm text-slate-200">自主檢測或填寫表單</h4>
+                    <p class="text-xs text-slate-400 mt-2 max-w-xs">利用左側診斷器嘗試故障排除，若未改善則填寫諮詢表格整理規格。</p>
+                </div>
+                <div class="text-center flex flex-col items-center">
+                    <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-full flex items-center justify-center font-black text-lg border border-purple-500/20 mb-3 shadow-lg">2</div>
+                    <h4 class="font-bold text-sm text-slate-200">一鍵複製，直達粉專</h4>
+                    <p class="text-xs text-slate-400 mt-2 max-w-xs">按下複製按鈕，系統會將整理好的完整格式存入您的剪貼簿，並為您打開 Messenger 對話框。</p>
+                </div>
+                <div class="text-center flex flex-col items-center">
+                    <div class="w-12 h-12 bg-cyan-500/10 text-cyan-400 rounded-full flex items-center justify-center font-black text-lg border border-cyan-500/20 mb-3 shadow-lg">3</div>
+                    <h4 class="font-bold text-sm text-slate-200">專家診斷與建議</h4>
+                    <p class="text-xs text-slate-400 mt-2 max-w-xs">在粉專聊天室直接貼上並送出訊息。我們的科技顧問將會在最短時間內給您專業的解答與建議！</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div class="max-w-3xl mx-auto mb-12">
+            <h3 class="text-center font-bold text-xl text-slate-200 mb-6">💡 常見諮詢問與答</h3>
+            <div class="space-y-4">
+                <div class="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-4 md:p-5">
+                    <h4 class="font-bold text-sm text-slate-200 mb-2">Q：我沒有臉書（Facebook）也可以找你們幫忙嗎？</h4>
+                    <p class="text-xs md:text-sm text-slate-400 leading-relaxed">
+                        絕對可以！我們考量到許多長輩沒有註冊臉書，因此加入了 Gmail 電子信箱諮詢。您只要填好問題，按下「點此直接發送 Gmail」按鈕，系統會自動在您的手機或電腦打開郵件 App並把規格寫好，您直接按下「傳送」就能將問題送給小幫手，我們一樣會提供貼心解答！
+                    </p>
+                </div>
+                <div class="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-4 md:p-5">
+                    <h4 class="font-bold text-sm text-slate-200 mb-2">Q：這真的是免費的諮詢嗎？會不會強迫推銷？</h4>
+                    <p class="text-xs md:text-sm text-slate-400 leading-relaxed">
+                        是的！我們平台完全免費提供線上諮詢，不收任何檢測費。我們這九年來秉持著純服務的初衷，絕不推銷任何特定品牌、第三方軟體、電信合約或硬體維修，讓長輩問得最安心。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-900 bg-slate-950 text-slate-500 text-xs py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center space-y-3">
+            <p>© 2026 電腦 手機 平板小幫手 版權所有. 服務長輩 9 年，致力於提供穩定且溫暖的免費科技諮詢</p>
+            <div class="flex justify-center space-x-4">
+                <a href="https://www.facebook.com/2204979913062286" target="_blank" rel="noopener noreferrer" class="hover:text-blue-500 transition-colors"><i class="fa-brands fa-facebook text-base"></i></a>
+                <a href="https://m.me/2204979913062286" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-400 transition-colors"><i class="fa-brands fa-facebook-messenger text-base"></i></a>
+            </div>
+            <p class="text-[10px] text-slate-600">聲明：本服務提供之線上建議與初步排解僅供参考，對於硬體重大損壞與資料安全，仍建議尋求官方授權中心或進行本地維修備份。</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const BRAND_NAME = "電腦 手機 平板小幫手";
+        const MESSENGER_URL = "https://m.me/2204979913062286";
+        const MY_GMAIL = "paul1323015@gmail.com"; 
+
+        let activeCategory = null;
+        let uploadedFile = null; // 全域變數，紀錄目前上傳的檔案物件
+
+        const diagnosisDatabase = {
+            phone: [
+                {
+                    symptom: "耗電異常、發熱燙手",
+                    resolution: "這通常與後台應用程式異常運作、電池老化或近期系統更新有關。iOS/Android 升級後的前三天，系統會重做硬碟索引，耗電發熱屬正常現象。",
+                    diySteps: [
+                        "至『設定』->『電池』查看耗電佔比，強制關閉背景異常耗電的 App。",
+                        "關閉藍牙、定位等不常用功能，調整螢幕亮度。",
+                        "確認手機是否正處於高溫直射環境，請拔掉手機殼、暫停充電，置於陰涼處降溫。",
+                        "檢查電池健康度：若低於 80%，建議更換原廠電池。"
+                    ]
+                },
+                {
+                    symptom: "連不上 WiFi 或是 4G/5G 網路不穩",
+                    resolution: "擺脫電信訊號干擾與 IP 配置衝突。通常是系統暫存錯誤或 SIM 卡氧化導致。",
+                    diySteps: [
+                        "開啟手機『飛航模式』靜置 10 秒後關閉，強制重新尋找基地台。",
+                        "進入設定重設網路：選擇『重設網路設定』（注意：這會需要重新輸入 WiFi 密碼）。",
+                        "拔出 SIM 卡，用橡皮擦輕微擦拭晶片金屬面，再重新裝回。",
+                        "重啟 WiFi 分享器主機，並清除手機中舊的 WiFi 連線紀錄重新連線。"
+                    ]
+                },
+                {
+                    symptom: "疑似進水受潮 / 如何檢查「防潮貼紙 (LCI)」",
+                    resolution: "官方稱為『液體侵入指示器（LCI）』。當有水分或含水液體進入時，貼紙會由原本的白色或銀色『完全變成紅色』。此貼紙一旦變色，官方保固便會判定人為損壞，改為非保固收費。",
+                    diySteps: [
+                        "尋找位置：iPhone 與多數 Android 手機的防潮貼紙都隱藏在 SIM 卡槽內部（需使用退卡針取出 SIM 卡托）。",
+                        "進行檢查：在光線充足處，使用手電筒或放大鏡朝 SIM 卡插槽內部觀察。若看見小粉紅點或紅色區塊，即代表已經受潮。",
+                        "保固判定：若防潮貼紙仍為白色或銀色，代表未受潮，可享有原廠硬體非人為的一年保固；若變紅，則視同保固失效。",
+                        "緊急處置：若剛泡水，請立刻關機、切勿充電，用乾布擦乾外觀，並儘速送至專業維修中心拆機清理，切勿使用吹風機吹乾。"
+                    ]
+                }
+            ],
+            computer: [
+                {
+                    symptom: "系統異常卡頓 / 開機等很久",
+                    resolution: "這可能是因為傳統硬碟老化（物理性緩慢）、系統後台開機自動啟動項太多、或硬體溫度過高而降頻。",
+                    diySteps: [
+                        "Windows 請按 Ctrl+Shift+Esc 開啟工作管理員，進入『開機』或『啟動』分頁，停用不必要的自動啟動程式。",
+                        "檢查硬碟類型：若仍在使用機械硬碟 (HDD)，推烈建議升級至固態硬碟 (SSD)。",
+                        "使用 Windows 內建的『清理磁碟』功能，刪除系統暫存檔與 Windows Update 殘留備份檔。",
+                        "確認風扇運轉正常，若進風口塞滿灰塵，處理器會因過熱自動降頻保護而使系統極度卡頓。"
+                    ]
+                }
+            ],
+            tablet: [
+                {
+                    symptom: "無法開機、充電無反應",
+                    resolution: "可能是電池深度放電保護、或是充電器瓦數不足/線材老化損毀。",
+                    diySteps: [
+                        "使用大瓦數（20W以上）的原廠充電頭與原廠線持續充電 30 分鐘以上。",
+                        "嘗試更換另一組已知正常的充電頭、充電線與插座進行測試。",
+                        "進行強制重啟：同時按住『電源鍵』與『Home鍵』（無Home鍵機種為快速按音量+、音量-，然後長按電源鍵）直到出現標誌。"
+                    ]
+                },
+                {
+                    symptom: "疑似進水受潮 / 平板「防潮貼紙」位置與保固",
+                    resolution: "平板電腦（如 iPad 或安桌平板）內部亦設有 LCI 防潮貼紙，用於檢測是否有液體滲入。一旦貼紙遇水由白/銀色化為紅色，設備將失去免費保固資格，維修判定將屬人為損壞。",
+                    diySteps: [
+                        "尋找位置：有行動網路規格（可插 SIM 卡）的平板，防潮貼紙多位於 SIM 卡槽內部；僅 WiFi 版機種則通常隱藏於耳機孔底部或充電插槽內部邊緣。",
+                        "狀態辨識：請使用細聚光手電筒照射上述插槽內部。若為白色/銀灰色，代表未受潮；若呈現粉紅色/深紅色，代表貼紙已被液體觸發變色。",
+                        "保固限制說明：原廠一年保固不涵蓋液體損壞。即使您購買了延長保固，液體浸入仍可能需要支付高額的人為意外自負額維修費。",
+                        "進水禁忌：切勿搖晃設備試圖把水甩出（會導致水擴散到主機板其他角落），也不要放入米缸中（米粉細灰吸水後會黏死在內部插槽）。"
+                    ]
+                }
+            ],
+            network: [
+                {
+                    symptom: "WiFi 有連上但無法連外網",
+                    resolution: "這代表您的手機/電腦到分享器這段連線沒問題，但路由器端可能斷聯、IP分配衝突、或固網合約異常中斷。",
+                    diySteps: [
+                        "直接拔除家用小烏龜與 WiFi 分享器的電源線，靜置 1 中重新插電。",
+                        "檢查電信公司小烏龜上之『ALARM』或『LOS』紅燈是否閃爍，若閃紅燈請直接進線客服報修。"
+                    ]
+                }
+            ]
+        };
+
+        // 初始化上傳功能偵測
+        document.addEventListener('DOMContentLoaded', () => {
+            initFileUploadZone();
+        });
+
+        // 檔案上傳區塊交互與拖曳邏輯
+        function initFileUploadZone() {
+            const zone = document.getElementById('file-upload-zone');
+            const input = document.getElementById('form-file-input');
+
+            // 點擊觸發選擇檔案
+            zone.addEventListener('click', () => {
+                input.click();
+            });
+
+            // 檔案選擇變更
+            input.addEventListener('change', (e) => {
+                handleUploadedFiles(e.target.files);
+            });
+
+            // 拖曳進入
+            zone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                zone.classList.remove('border-slate-800', 'bg-slate-900/50');
+                zone.classList.add('border-indigo-500/50', 'bg-indigo-950/10');
+            });
+
+            // 拖曳離開
+            zone.addEventListener('dragleave', () => {
+                zone.classList.remove('border-indigo-500/50', 'bg-indigo-950/10');
+                zone.classList.add('border-slate-800', 'bg-slate-900/50');
+            });
+
+            // 拖曳放開
+            zone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                zone.classList.remove('border-indigo-500/50', 'bg-indigo-950/10');
+                zone.classList.add('border-slate-800', 'bg-slate-900/50');
+                handleUploadedFiles(e.dataTransfer.files);
+            });
+        }
+
+        // 處理取得之檔案
+        function handleUploadedFiles(files) {
+            if (files && files.length > 0) {
+                const file = files[0];
+                
+                // 僅限圖片檔案檢查
+                if (!file.type.startsWith('image/')) {
+                    showToast("不支援此檔案格式", "請上傳手機螢幕截圖或照片 (JPG/PNG/GIF 等圖片格式)！", true);
+                    return;
+                }
+
+                uploadedFile = file;
+
+                // 檔案讀取預覽
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('preview-img').src = e.target.result;
+                    document.getElementById('preview-filename').innerText = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+                    document.getElementById('upload-prompt').classList.add('hidden');
+                    document.getElementById('upload-preview').classList.remove('hidden');
+                    showToast("圖片上傳成功", "已載入故障畫面，隨時可進行表單發送。");
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // 清除已上傳檔案
+        function clearUploadedFile(event) {
+            event.stopPropagation(); // 阻止氣泡事件觸發外層 zone 的點擊
+            uploadedFile = null;
+            document.getElementById('form-file-input').value = '';
+            document.getElementById('upload-prompt').classList.remove('hidden');
+            document.getElementById('upload-preview').classList.add('hidden');
+            showToast("圖片已移除", "已重設上傳欄位。");
+        }
+
+        function showToast(title, message, isError = false) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').innerText = title;
+            document.getElementById('toast-msg').innerText = message;
+            
+            if (isError) {
+                toast.classList.remove('border-emerald-500');
+                toast.classList.add('border-rose-500');
+            } else {
+                toast.classList.remove('border-rose-500');
+                toast.classList.add('border-emerald-500');
+            }
+            
+            toast.classList.remove('translate-x-80', 'opacity-0');
+            toast.classList.add('translate-x-0', 'opacity-100');
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-x-0', 'opacity-100');
+                toast.classList.add('translate-x-80', 'opacity-0');
+            }, 3500);
+        }
+
+        function selectCategory(category) {
+            activeCategory = category;
+            document.getElementById('wizard-step-1').classList.add('hidden');
+            document.getElementById('wizard-step-2').classList.remove('hidden');
+            document.getElementById('prog-step-2').classList.replace('bg-slate-800', 'bg-indigo-600');
+
+            const container = document.getElementById('symptoms-container');
+            container.innerHTML = "";
+            
+            diagnosisDatabase[category].forEach((item, index) => {
+                const btn = document.createElement('button');
+                btn.className = "flex items-center justify-between p-3.5 bg-slate-900 hover:bg-slate-850 border border-slate-800 hover:border-indigo-500/30 rounded-xl text-left text-xs font-semibold text-slate-200 group w-full";
+                btn.onclick = () => selectSymptom(index);
+                container.appendChild(btn);
+                btn.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-circle-question text-indigo-400"></i>
+                        <span>${item.symptom}</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-slate-600 group-hover:translate-x-1 transition-transform"></i>
+                `;
+            });
+        }
+
+        function wizardBackToStep1() {
+            document.getElementById('wizard-step-1').classList.remove('hidden');
+            document.getElementById('wizard-step-2').classList.add('hidden');
+            document.getElementById('prog-step-2').classList.replace('bg-indigo-600', 'bg-slate-800');
+            activeCategory = null;
+        }
+
+        function selectSymptom(index) {
+            document.getElementById('wizard-step-2').classList.add('hidden');
+            document.getElementById('wizard-step-3').classList.remove('hidden');
+            document.getElementById('prog-step-3').classList.replace('bg-slate-800', 'bg-indigo-600');
+
+            const item = diagnosisDatabase[activeCategory][index];
+            document.getElementById('diag-resolution').innerText = item.resolution;
+            
+            const list = document.getElementById('diy-steps-list');
+            list.innerHTML = "";
+            item.diySteps.forEach(step => {
+                const li = document.createElement('li');
+                li.innerText = step;
+                list.appendChild(li);
+            });
+        }
+
+        function wizardBackToStep2() {
+            document.getElementById('wizard-step-2').classList.remove('hidden');
+            document.getElementById('wizard-step-3').classList.add('hidden');
+            document.getElementById('prog-step-3').classList.replace('bg-indigo-600', 'bg-slate-800');
+        }
+
+        function transferToForm() {
+            let catName = "";
+            if (activeCategory === 'phone') catName = "智慧型手機";
+            if (activeCategory === 'computer') catName = "桌機/筆記型電腦";
+            if (activeCategory === 'tablet') catName = "平板電腦";
+            if (activeCategory === 'network') catName = "寬頻網路與通訊";
+            
+            document.getElementById('form-device-os').value = catName;
+            document.getElementById('form-issue-desc').value = "已嘗試自我診斷步驟，仍需協助。狀況：";
+            document.getElementById('consultation-section').scrollIntoView({ behavior: 'smooth' });
+            showToast("已帶入部分資料", "已自動為您在諮詢單中設定分類！");
+        }
+
+        function getFormValues() {
+            const name = document.getElementById('form-user-name').value.trim();
+            const contact = document.getElementById('form-user-contact').value.trim();
+            const device = document.getElementById('form-device-os').value.trim();
+            const issue = document.getElementById('form-issue-desc').value.trim();
+            const errCode = document.getElementById('form-error-code').value.trim();
+
+            if (!name || !device || !issue) {
+                showToast("填寫不完整", "請務必填寫『姓名』、『設備規格』與『具體狀況描述』！", true);
+                return null;
+            }
+            return { name, contact, device, issue, errCode };
+        }
+
+        function sendToMessenger() {
+            const val = getFormValues();
+            if (!val) return;
+
+            const fileStatus = uploadedFile ? `已載入 [${uploadedFile.name}]` : "無";
+
+            const msg = `【${BRAND_NAME} 諮詢提問單】\n` +
+                        `-----------------------------\n` +
+                        `• 求求助者稱呼：${val.name}\n` +
+                        `• 聯絡資訊/時間：${val.contact ? val.contact : '未提供'}\n` +
+                        `• 設備與系統規格：${val.device}\n` +
+                        `• 具體問題與異常現象：${val.issue}\n` +
+                        `• 錯誤代碼/視窗說明：${val.errCode ? val.errCode : '無'}\n` +
+                        `• 附加故障截圖或照片：${fileStatus}\n` +
+                        `-----------------------------\n` +
+                        `*此訊息由診斷入口網頁產生*`;
+
+            const temp = document.createElement("textarea");
+            temp.value = msg;
+            temp.style.position = "fixed";
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+
+            if (uploadedFile) {
+                showToast("規格已複製！", "提醒：規格已複製，請在開啟 Messenger 後手動將您的『照片截圖』一同傳給小幫手喔！");
+            } else {
+                showToast("複製成功！", "規格單已存至剪貼簿，正為您開啟 Messenger 對話框。");
+            }
+            setTimeout(() => { window.open(MESSENGER_URL, '_blank', 'noopener,noreferrer'); }, 1500);
+        }
+
+        function sendToGmail() {
+            const val = getFormValues();
+            if (!val) return;
+
+            const fileStatus = uploadedFile ? `已上傳預覽 (請於信件中手動附加傳送 ${uploadedFile.name})` : "無";
+
+            const subject = encodeURIComponent(`[3C諮詢求助] ${val.name} 的設備故障診斷單`);
+            const body = encodeURIComponent(
+                `【${BRAND_NAME} 諮詢提問單】\n` +
+                `-----------------------------\n` +
+                `• 求助者稱呼：${val.name}\n` +
+                `• 聯絡資訊/時間：${val.contact ? val.contact : '未提供'}\n` +
+                `• 設備與系統規格：${val.device}\n` +
+                `• 具體問題與異常現象：${val.issue}\n` +
+                `• 錯誤代碼/視窗說明：${val.errCode ? val.errCode : '無'}\n` +
+                `• 附加故障截圖：${fileStatus}\n` +
+                `-----------------------------\n` +
+                `填單時間：${new Date().toLocaleString()}\n` +
+                `本郵件由診斷網頁表單一鍵自動產生。`
+            );
+
+            window.location.href = `mailto:${MY_GMAIL}?subject=${subject}&body=${body}`;
+            
+            if (uploadedFile) {
+                showToast("正開啟 Gmail", "提醒：信件內容已產生，請記得在信箱中『夾帶附加您剛剛上傳的圖片』再送出喔！");
+            } else {
+                showToast("正開啟郵件 App", "系統已自動幫您填妥主旨與內容！");
+            }
+        }
+    </script>
+</body>
+</html>
